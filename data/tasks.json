@@ -1,9 +1,55 @@
 {
   "CLI Tool": [
     {
-      "title": "Implement add-task",
+      "title": "Setup argparse",
       "status": "completed",
       "assigned_to": "Alex"
+    },
+    {
+      "title": "Implement add-user command",
+      "status": "completed",
+      "assigned_to": "Alex"
+    },
+    {
+      "title": "Implement list-users command",
+      "status": "pending",
+      "assigned_to": "Alex"
+    }
+  ],
+  "Web App": [
+    {
+      "title": "Design UI mockups",
+      "status": "pending",
+      "assigned_to": "Jordan"
+    },
+    {
+      "title": "Setup backend server",
+      "status": "in progress",
+      "assigned_to": "Morgan"
+    }
+  ],
+  "Database Design": [
+    {
+      "title": "Create user table",
+      "status": "completed",
+      "assigned_to": "Jordan"
+    },
+    {
+      "title": "Create project table",
+      "status": "completed",
+      "assigned_to": "Jordan"
+    }
+  ],
+  "Documentation": [
+    {
+      "title": "Write README",
+      "status": "pending",
+      "assigned_to": "Morgan"
+    },
+    {
+      "title": "Create API documentation",
+      "status": "pending",
+      "assigned_to": "Morgan"
     }
   ]
 }

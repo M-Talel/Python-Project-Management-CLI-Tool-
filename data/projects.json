@@ -2,8 +2,27 @@
   "Alex": [
     {
       "title": "CLI Tool",
-      "description": "Build a CLI application",
+      "description": "Build a command-line interface application",
       "due_date": "2026-12-31"
+    },
+    {
+      "title": "Web App",
+      "description": "Develop a web application",
+      "due_date": "2026-11-30"
+    }
+  ],
+  "Jordan": [
+    {
+      "title": "Database Design",
+      "description": "Create database schema",
+      "due_date": "2026-10-15"
+    }
+  ],
+  "Morgan": [
+    {
+      "title": "Documentation",
+      "description": "Write project documentation",
+      "due_date": "2026-09-30"
     }
   ]
 }
