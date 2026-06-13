@@ -1,6 +1,5 @@
 # CLI Entry Point for Project Management Tool
 
-import argparse
 import sys
 from models.user import User
 from models.project import Project
@@ -13,162 +12,108 @@ console = Console()
 storage = Storage()
 
 
-def add_user(args):
-    # Add a new user to the system
-    try:
-        user = User(name=args.name, email=args.email)
-        storage.add_user(user)
-        console.print(f"[green]✓ User '{args.name}' added successfully![/green]")
-    except Exception as e:
-        console.print(f"[red]✗ Error adding user: {e}[/red]")
-
-
-def list_users(args):
-    # Display all users in a formatted table
-    try:
-        users = storage.get_all_users()
-        if not users:
-            console.print("[yellow]No users found[/yellow]")
-            return
-        
-        console.print("\n[bold cyan]Users:[/bold cyan]")
-        for user in users:
-            console.print(f"  - {user.name} ({user.email})")
-        console.print()
-    except Exception as e:
-        console.print(f"[red]✗ Error listing users: {e}[/red]")
-
-
-def add_project(args):
-    # Add a new project to a user
-    try:
-        project = Project(title=args.title, description=args.description, due_date=args.due_date)
-        storage.add_project(args.user, project)
-        console.print(f"[green]✓ Project '{args.title}' added to user '{args.user}'![/green]")
-    except Exception as e:
-        console.print(f"[red]✗ Error adding project: {e}[/red]")
-
-
-def list_projects(args):
-    # Display all projects for a user
-    try:
-        projects = storage.get_projects(args.user)
-        if not projects:
-            console.print(f"[yellow]No projects found for user '{args.user}'[/yellow]")
-            return
-        
-        console.print(f"\n[bold cyan]Projects for {args.user}:[/bold cyan]")
-        for project in projects:
-            console.print(f"  - {project.title}")
-            console.print(f"    Description: {project.description}")
-            console.print(f"    Due Date: {project.due_date}\n")
-    except Exception as e:
-        console.print(f"[red]✗ Error listing projects: {e}[/red]")
-
-
-def add_task(args):
-    # Add a new task to a project
-    try:
-        task = Task(title=args.title, status=args.status, assigned_to=args.assigned_to)
-        storage.add_task(args.project, task)
-        console.print(f"[green]✓ Task '{args.title}' added to project '{args.project}'![/green]")
-    except Exception as e:
-        console.print(f"[red]✗ Error adding task: {e}[/red]")
-
-
-def list_tasks(args):
-    # Display all tasks for a project
-    try:
-        tasks = storage.get_tasks(args.project)
-        if not tasks:
-            console.print(f"[yellow]No tasks found for project '{args.project}'[/yellow]")
-            return
-        
-        console.print(f"\n[bold cyan]Tasks for {args.project}:[/bold cyan]")
-        for task in tasks:
-            console.print(f"  - {task.title}")
-            console.print(f"    Status: {task.status}")
-            console.print(f"    Assigned to: {task.assigned_to}\n")
-    except Exception as e:
-        console.print(f"[red]✗ Error listing tasks: {e}[/red]")
-
-
-def complete_task(args):
-    # Mark a task as complete
-    try:
-        storage.update_task_status(args.project, args.task_title, "completed")
-        console.print(f"[green]✓ Task '{args.task_title}' marked as completed![/green]")
-    except Exception as e:
-        console.print(f"[red]✗ Error completing task: {e}[/red]")
-
-
 def setup_parser():
-    # Configure argparse with all CLI subcommands
-    parser = argparse.ArgumentParser(
-        description="Project Management CLI Tool",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  python main.py add-user --name "Alex" --email "alex@example.com"
-  python main.py list-users
-  python main.py add-project --user "Alex" --title "CLI Tool" --description "Build CLI" --due_date "2026-12-31"
-  python main.py list-projects --user "Alex"
-  python main.py add-task --project "CLI Tool" --title "Implement add-task" --status "pending" --assigned_to "Alex"
-  python main.py list-tasks --project "CLI Tool"
-  python main.py complete-task --project "CLI Tool" --task_title "Implement add-task"
-        """
-    )
+    # Display help message with available commands
+    help_message = """
+Project Management CLI - Available Commands:
+
+1. add-user <name> <email>
+   Example: python main.py add-user Alex alex@example.com
+
+2. list-users
+   Example: python main.py list-users
+
+3. add-project <user> <title> <description> <due_date>
+   Example: python main.py add-project Alex "CLI Tool" "Build CLI" 2026-12-31
+
+4. list-projects <user>
+   Example: python main.py list-projects Alex
+
+5. add-task <project> <title> <status> <assigned_to>
+   Example: python main.py add-task "CLI Tool" "Implement add-task" pending Alex
+
+6. list-tasks <project>
+   Example: python main.py list-tasks "CLI Tool"
+
+7. complete-task <project> <task_title>
+   Example: python main.py complete-task "CLI Tool" "Implement add-task"
+    """
+    console.print(help_message)
+
+
+def parse_command():
+    # Parse command from sys.argv
+    if len(sys.argv) < 2:
+        setup_parser()
+        return None, None
     
-    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+    command = sys.argv[1]
+    args = sys.argv[2:]
     
-    # User commands
-    add_user_parser = subparsers.add_parser("add-user", help="Add a new user")
-    add_user_parser.add_argument("--name", required=True, help="User's name")
-    add_user_parser.add_argument("--email", required=True, help="User's email")
-    add_user_parser.set_defaults(func=add_user)
-    
-    list_users_parser = subparsers.add_parser("list-users", help="List all users")
-    list_users_parser.set_defaults(func=list_users)
-    
-    # Project commands
-    add_project_parser = subparsers.add_parser("add-project", help="Add a new project")
-    add_project_parser.add_argument("--user", required=True, help="User's name")
-    add_project_parser.add_argument("--title", required=True, help="Project title")
-    add_project_parser.add_argument("--description", default="", help="Project description")
-    add_project_parser.add_argument("--due_date", default="", help="Project due date (YYYY-MM-DD)")
-    add_project_parser.set_defaults(func=add_project)
-    
-    list_projects_parser = subparsers.add_parser("list-projects", help="List projects for a user")
-    list_projects_parser.add_argument("--user", required=True, help="User's name")
-    list_projects_parser.set_defaults(func=list_projects)
-    
-    # Task commands
-    add_task_parser = subparsers.add_parser("add-task", help="Add a new task")
-    add_task_parser.add_argument("--project", required=True, help="Project title")
-    add_task_parser.add_argument("--title", required=True, help="Task title")
-    add_task_parser.add_argument("--status", default="pending", help="Task status")
-    add_task_parser.add_argument("--assigned_to", default="", help="Assigned to (user name)")
-    add_task_parser.set_defaults(func=add_task)
-    
-    list_tasks_parser = subparsers.add_parser("list-tasks", help="List tasks for a project")
-    list_tasks_parser.add_argument("--project", required=True, help="Project title")
-    list_tasks_parser.set_defaults(func=list_tasks)
-    
-    complete_task_parser = subparsers.add_parser("complete-task", help="Mark task as completed")
-    complete_task_parser.add_argument("--project", required=True, help="Project title")
-    complete_task_parser.add_argument("--task_title", required=True, help="Task title to complete")
-    complete_task_parser.set_defaults(func=complete_task)
-    
-    return parser
+    return command, args
 
 
 if __name__ == "__main__":
     # Main entry point - parse arguments and execute appropriate command
-    parser = setup_parser()
-    args = parser.parse_args()
+    command, args = parse_command()
     
-    if not args.command:
-        parser.print_help()
-        sys.exit(0)
+    if command == "add-user" and len(args) == 2:
+        name, email = args[0], args[1]
+        user = User(name=name, email=email)
+        storage.add_user(user)
+        console.print(f"[green]✓ User '{name}' added successfully![/green]")
     
-    args.func(args)
+    elif command == "list-users":
+        users = storage.get_all_users()
+        if not users:
+            console.print("[yellow]No users found[/yellow]")
+        else:
+            console.print("\n[bold cyan]Users:[/bold cyan]")
+            for user in users:
+                console.print(f"  - {user.name} ({user.email})")
+            console.print()
+    
+    elif command == "add-project" and len(args) == 4:
+        user, title, description, due_date = args[0], args[1], args[2], args[3]
+        project = Project(title=title, description=description, due_date=due_date)
+        storage.add_project(user, project)
+        console.print(f"[green]✓ Project '{title}' added to user '{user}'![/green]")
+    
+    elif command == "list-projects" and len(args) == 1:
+        user = args[0]
+        projects = storage.get_projects(user)
+        if not projects:
+            console.print(f"[yellow]No projects found for user '{user}'[/yellow]")
+        else:
+            console.print(f"\n[bold cyan]Projects for {user}:[/bold cyan]")
+            for project in projects:
+                console.print(f"  - {project.title}")
+                console.print(f"    Description: {project.description}")
+                console.print(f"    Due Date: {project.due_date}\n")
+    
+    elif command == "add-task" and len(args) == 4:
+        project, title, status, assigned_to = args[0], args[1], args[2], args[3]
+        task = Task(title=title, status=status, assigned_to=assigned_to)
+        storage.add_task(project, task)
+        console.print(f"[green]✓ Task '{title}' added to project '{project}'![/green]")
+    
+    elif command == "list-tasks" and len(args) == 1:
+        project = args[0]
+        tasks = storage.get_tasks(project)
+        if not tasks:
+            console.print(f"[yellow]No tasks found for project '{project}'[/yellow]")
+        else:
+            console.print(f"\n[bold cyan]Tasks for {project}:[/bold cyan]")
+            for task in tasks:
+                console.print(f"  - {task.title}")
+                console.print(f"    Status: {task.status}")
+                console.print(f"    Assigned to: {task.assigned_to}\n")
+    
+    elif command == "complete-task" and len(args) == 2:
+        project, task_title = args[0], args[1]
+        storage.update_task_status(project, task_title, "completed")
+        console.print(f"[green]✓ Task '{task_title}' marked as completed![/green]")
+    
+    else:
+        console.print("[red]✗ Invalid command or incorrect number of arguments[/red]")
+        setup_parser()
