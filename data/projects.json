@@ -2,27 +2,32 @@
   "Alex": [
     {
       "title": "CLI Tool",
-      "description": "Build a command-line interface application",
+      "description": "Build a command-line interface tool",
       "due_date": "2026-12-31"
     },
     {
       "title": "Web App",
-      "description": "Develop a web application",
-      "due_date": "2026-11-30"
+      "description": "Create a web application",
+      "due_date": "2027-01-15"
+    }
+  ],
+  "Sarah": [
+    {
+      "title": "Data Analysis",
+      "description": "Analyze sales data",
+      "due_date": "2026-07-30"
+    },
+    {
+      "title": "API Backend",
+      "description": "Build REST API",
+      "due_date": "2026-08-15"
     }
   ],
   "Jordan": [
     {
-      "title": "Database Design",
-      "description": "Create database schema",
-      "due_date": "2026-10-15"
-    }
-  ],
-  "Morgan": [
-    {
-      "title": "Documentation",
-      "description": "Write project documentation",
-      "due_date": "2026-09-30"
+      "title": "Mobile App",
+      "description": "Develop mobile application",
+      "due_date": "2027-02-28"
     }
   ]
 }

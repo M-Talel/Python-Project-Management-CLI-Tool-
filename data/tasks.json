@@ -1,55 +1,77 @@
 {
   "CLI Tool": [
     {
-      "title": "Setup argparse",
+      "title": "Design CLI interface",
+      "status": "pending",
+      "assigned_to": "Alex"
+    },
+    {
+      "title": "Implement core commands",
+      "status": "in progress",
+      "assigned_to": "Alex"
+    },
+    {
+      "title": "Add user authentication",
+      "status": "pending",
+      "assigned_to": "Jordan"
+    }
+  ],
+  "Web App": [
+    {
+      "title": "Setup project structure",
       "status": "completed",
       "assigned_to": "Alex"
     },
     {
-      "title": "Implement add-user command",
-      "status": "completed",
-      "assigned_to": "Alex"
+      "title": "Create database schema",
+      "status": "in progress",
+      "assigned_to": "Sarah"
     },
     {
-      "title": "Implement list-users command",
+      "title": "Build frontend components",
+      "status": "pending",
+      "assigned_to": "Jordan"
+    }
+  ],
+  "Data Analysis": [
+    {
+      "title": "Collect sales data",
+      "status": "completed",
+      "assigned_to": "Sarah"
+    },
+    {
+      "title": "Clean and process data",
+      "status": "in progress",
+      "assigned_to": "Sarah"
+    },
+    {
+      "title": "Generate reports",
       "status": "pending",
       "assigned_to": "Alex"
     }
   ],
-  "Web App": [
+  "API Backend": [
+    {
+      "title": "Design API endpoints",
+      "status": "pending",
+      "assigned_to": "Sarah"
+    },
+    {
+      "title": "Implement authentication",
+      "status": "in progress",
+      "assigned_to": "Jordan"
+    }
+  ],
+  "Mobile App": [
     {
       "title": "Design UI mockups",
       "status": "pending",
       "assigned_to": "Jordan"
     },
     {
-      "title": "Setup backend server",
-      "status": "in progress",
-      "assigned_to": "Morgan"
-    }
-  ],
-  "Database Design": [
-    {
-      "title": "Create user table",
-      "status": "completed",
-      "assigned_to": "Jordan"
-    },
-    {
-      "title": "Create project table",
-      "status": "completed",
-      "assigned_to": "Jordan"
-    }
-  ],
-  "Documentation": [
-    {
-      "title": "Write README",
+      "title": "Implement navigation",
       "status": "pending",
-      "assigned_to": "Morgan"
-    },
-    {
-      "title": "Create API documentation",
-      "status": "pending",
-      "assigned_to": "Morgan"
+      "assigned_to": "Alex"
     }
   ]
 }
