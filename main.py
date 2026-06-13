@@ -1,7 +1,4 @@
-"""
-CLI Entry Point for Project Management Tool
-Handles all CLI commands and user interactions
-"""
+# CLI Entry Point for Project Management Tool
 
 import argparse
 import sys
@@ -10,7 +7,6 @@ from models.project import Project
 from models.task import Task
 from utils.storage import Storage
 from rich.console import Console
-from rich.table import Table
 
 # Initialize console for rich formatting
 console = Console()
@@ -18,9 +14,7 @@ storage = Storage()
 
 
 def add_user(args):
-    """
-    Add a new user to the system
-    """
+    # Add a new user to the system
     try:
         user = User(name=args.name, email=args.email)
         storage.add_user(user)
@@ -30,31 +24,23 @@ def add_user(args):
 
 
 def list_users(args):
-    """
-    Display all users in a formatted table
-    """
+    # Display all users in a formatted table
     try:
         users = storage.get_all_users()
         if not users:
             console.print("[yellow]No users found[/yellow]")
             return
         
-        table = Table(title="Users")
-        table.add_column("Name", style="cyan")
-        table.add_column("Email", style="magenta")
-        
+        console.print("\n[bold cyan]Users:[/bold cyan]")
         for user in users:
-            table.add_row(user.name, user.email)
-        
-        console.print(table)
+            console.print(f"  - {user.name} ({user.email})")
+        console.print()
     except Exception as e:
         console.print(f"[red]✗ Error listing users: {e}[/red]")
 
 
 def add_project(args):
-    """
-    Add a new project to a user
-    """
+    # Add a new project to a user
     try:
         project = Project(title=args.title, description=args.description, due_date=args.due_date)
         storage.add_project(args.user, project)
@@ -64,32 +50,24 @@ def add_project(args):
 
 
 def list_projects(args):
-    """
-    Display all projects for a user
-    """
+    # Display all projects for a user
     try:
         projects = storage.get_projects(args.user)
         if not projects:
             console.print(f"[yellow]No projects found for user '{args.user}'[/yellow]")
             return
         
-        table = Table(title=f"Projects for {args.user}")
-        table.add_column("Title", style="cyan")
-        table.add_column("Description", style="green")
-        table.add_column("Due Date", style="magenta")
-        
+        console.print(f"\n[bold cyan]Projects for {args.user}:[/bold cyan]")
         for project in projects:
-            table.add_row(project.title, project.description, project.due_date)
-        
-        console.print(table)
+            console.print(f"  - {project.title}")
+            console.print(f"    Description: {project.description}")
+            console.print(f"    Due Date: {project.due_date}\n")
     except Exception as e:
         console.print(f"[red]✗ Error listing projects: {e}[/red]")
 
 
 def add_task(args):
-    """
-    Add a new task to a project
-    """
+    # Add a new task to a project
     try:
         task = Task(title=args.title, status=args.status, assigned_to=args.assigned_to)
         storage.add_task(args.project, task)
@@ -99,32 +77,24 @@ def add_task(args):
 
 
 def list_tasks(args):
-    """
-    Display all tasks for a project
-    """
+    # Display all tasks for a project
     try:
         tasks = storage.get_tasks(args.project)
         if not tasks:
             console.print(f"[yellow]No tasks found for project '{args.project}'[/yellow]")
             return
         
-        table = Table(title=f"Tasks for {args.project}")
-        table.add_column("Title", style="cyan")
-        table.add_column("Status", style="yellow")
-        table.add_column("Assigned To", style="magenta")
-        
+        console.print(f"\n[bold cyan]Tasks for {args.project}:[/bold cyan]")
         for task in tasks:
-            table.add_row(task.title, task.status, task.assigned_to)
-        
-        console.print(table)
+            console.print(f"  - {task.title}")
+            console.print(f"    Status: {task.status}")
+            console.print(f"    Assigned to: {task.assigned_to}\n")
     except Exception as e:
         console.print(f"[red]✗ Error listing tasks: {e}[/red]")
 
 
 def complete_task(args):
-    """
-    Mark a task as complete
-    """
+    # Mark a task as complete
     try:
         storage.update_task_status(args.project, args.task_title, "completed")
         console.print(f"[green]✓ Task '{args.task_title}' marked as completed![/green]")
@@ -133,9 +103,7 @@ def complete_task(args):
 
 
 def setup_parser():
-    """
-    Configure argparse with all CLI subcommands
-    """
+    # Configure argparse with all CLI subcommands
     parser = argparse.ArgumentParser(
         description="Project Management CLI Tool",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -195,9 +163,7 @@ Examples:
 
 
 if __name__ == "__main__":
-    """
-    Main entry point - parse arguments and execute appropriate command
-    """
+    # Main entry point - parse arguments and execute appropriate command
     parser = setup_parser()
     args = parser.parse_args()
     
