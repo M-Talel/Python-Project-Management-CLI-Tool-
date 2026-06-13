@@ -1,9 +1,9 @@
 # CLI Entry Point for Project Management Tool
 
 import sys
-from models.user import User
-from models.project import Project
-from models.task import Task
+from models.users import User
+from models.projects import Project
+from models.tasks import Task
 from utils.storage import Storage
 from rich.console import Console
 
