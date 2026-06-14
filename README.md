@@ -6,8 +6,10 @@ A simple command-line tool to manage users, projects, and tasks with persistent 
 
 ## Installation
 
+No external dependencies required. Just run:
+
 ```bash
-pip install -r requirements.txt
+python3 main.py
 ```
 
 ## Usage
@@ -47,11 +49,10 @@ python main.py complete-task "Website Redesign" "Design mockups"
 
 ## Features
 
-- ✓ User management with email validation
-- ✓ Project creation and tracking
-- ✓ Task assignment and status updates
-- ✓ Persistent JSON file storage
-- ✓ Rich CLI formatting with colors and icons
+- User management
+- Project creation and tracking
+- Task assignment and status updates
+- Persistent JSON file storage
 
 ## Project Structure
 
@@ -62,8 +63,7 @@ python main.py complete-task "Website Redesign" "Design mockups"
 │   ├── users.py
 │   ├── projects.py
 │   └── tasks.py
-├── utils/               # Utility functions
-│   ├── helpers.py       # Validation and formatting
+├── utils/               # Storage functions
 │   └── storage.py       # JSON file storage
 └── data/                # Generated storage files
     ├── users.json
@@ -74,4 +74,3 @@ python main.py complete-task "Website Redesign" "Design mockups"
 ## Requirements
 
 - Python 3.7+
-- rich (for terminal formatting)

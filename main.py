@@ -5,10 +5,7 @@ from models.users import User
 from models.projects import Project
 from models.tasks import Task
 from utils.storage import Storage
-from rich.console import Console
 
-# Initialize console for rich formatting
-console = Console()
 storage = Storage()
 
 
@@ -38,7 +35,7 @@ Project Management CLI - Available Commands:
 7. complete-task <project> <task_title>
    Example: python main.py complete-task "CLI Tool" "Implement add-task"
     """
-    console.print(help_message)
+    print(help_message)
 
 
 def parse_command():
@@ -64,59 +61,59 @@ if __name__ == "__main__":
         name, email = args[0], args[1]
         user = User(name=name, email=email)
         storage.add_user(user)
-        console.print(f"[green]✓ User '{name}' added successfully![/green]")
+        print(f"User '{name}' added successfully!")
     
     elif command == "list-users":
         users = storage.get_all_users()
         if not users:
-            console.print("[yellow]No users found[/yellow]")
+            print("No users found")
         else:
-            console.print("\n[bold cyan]Users:[/bold cyan]")
+            print("\nUsers:")
             for user in users:
-                console.print(f"  - {user.name} ({user.email})")
-            console.print()
+                print(f"  - {user.name} ({user.email})")
+            print()
     
     elif command == "add-project" and len(args) == 4:
         user, title, description, due_date = args[0], args[1], args[2], args[3]
         project = Project(title=title, description=description, due_date=due_date)
         storage.add_project(user, project)
-        console.print(f"[green]✓ Project '{title}' added to user '{user}'![/green]")
+        print(f"Project '{title}' added to user '{user}'!")
     
     elif command == "list-projects" and len(args) == 1:
         user = args[0]
         projects = storage.get_projects(user)
         if not projects:
-            console.print(f"[yellow]No projects found for user '{user}'[/yellow]")
+            print(f"No projects found for user '{user}'")
         else:
-            console.print(f"\n[bold cyan]Projects for {user}:[/bold cyan]")
+            print(f"\nProjects for {user}:")
             for project in projects:
-                console.print(f"  - {project.title}")
-                console.print(f"    Description: {project.description}")
-                console.print(f"    Due Date: {project.due_date}\n")
+                print(f"  - {project.title}")
+                print(f"    Description: {project.description}")
+                print(f"    Due Date: {project.due_date}")
     
     elif command == "add-task" and len(args) == 4:
         project, title, status, assigned_to = args[0], args[1], args[2], args[3]
         task = Task(title=title, status=status, assigned_to=assigned_to)
         storage.add_task(project, task)
-        console.print(f"[green]✓ Task '{title}' added to project '{project}'![/green]")
+        print(f"Task '{title}' added to project '{project}'!")
     
     elif command == "list-tasks" and len(args) == 1:
         project = args[0]
         tasks = storage.get_tasks(project)
         if not tasks:
-            console.print(f"[yellow]No tasks found for project '{project}'[/yellow]")
+            print(f"No tasks found for project '{project}'")
         else:
-            console.print(f"\n[bold cyan]Tasks for {project}:[/bold cyan]")
+            print(f"\nTasks for {project}:")
             for task in tasks:
-                console.print(f"  - {task.title}")
-                console.print(f"    Status: {task.status}")
-                console.print(f"    Assigned to: {task.assigned_to}\n")
+                print(f"  - {task.title}")
+                print(f"    Status: {task.status}")
+                print(f"    Assigned to: {task.assigned_to}")
     
     elif command == "complete-task" and len(args) == 2:
         project, task_title = args[0], args[1]
         storage.update_task_status(project, task_title, "completed")
-        console.print(f"[green]✓ Task '{task_title}' marked as completed![/green]")
+        print(f"Task '{task_title}' marked as completed!")
     
     else:
-        console.print("[red]✗ Invalid command or incorrect number of arguments[/red]")
+        print("Invalid command or incorrect number of arguments")
         setup_parser()
