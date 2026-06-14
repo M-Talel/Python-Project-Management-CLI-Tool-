@@ -57,7 +57,10 @@ if __name__ == "__main__":
     # Main entry point - parse arguments and execute appropriate command
     command, args = parse_command()
     
-    if command == "add-user" and len(args) == 2:
+    if command is None:
+        sys.exit(0)
+    
+    elif command == "add-user" and len(args) == 2:
         name, email = args[0], args[1]
         user = User(name=name, email=email)
         storage.add_user(user)

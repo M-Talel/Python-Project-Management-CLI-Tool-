@@ -43,35 +43,6 @@
       "title": "Clean and process data",
       "status": "in progress",
       "assigned_to": "Sarah"
-    },
-    {
-      "title": "Generate reports",
-      "status": "pending",
-      "assigned_to": "Alex"
-    }
-  ],
-  "API Backend": [
-    {
-      "title": "Design API endpoints",
-      "status": "pending",
-      "assigned_to": "Sarah"
-    },
-    {
-      "title": "Implement authentication",
-      "status": "in progress",
-      "assigned_to": "Jordan"
-    }
-  ],
-  "Mobile App": [
-    {
-      "title": "Design UI mockups",
-      "status": "pending",
-      "assigned_to": "Jordan"
-    },
-    {
-      "title": "Implement navigation",
-      "status": "pending",
-      "assigned_to": "Alex"
     }
   ]
 }
