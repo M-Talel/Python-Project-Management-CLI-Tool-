@@ -24,6 +24,5 @@ class Task:
         }
     
     # Create task from dictionary
-    @staticmethod
     def from_dict(data):
         return Task(data["title"], data["status"], data["assigned_to"])

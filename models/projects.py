@@ -30,6 +30,5 @@ class Project:
         }
     
     # Create project from dictionary
-    @staticmethod
     def from_dict(data):
         return Project(data["title"], data["description"], data["due_date"])

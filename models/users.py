@@ -28,6 +28,5 @@ class User:
         }
     
     # Create user from dictionary
-    @staticmethod
     def from_dict(data):
         return User(data["name"], data["email"])
