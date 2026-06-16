@@ -1,18 +1,22 @@
 [
   {
     "name": "Alex",
-    "email": "alex@example.com"
+    "email": "alex@gmail.com"
   },
   {
     "name": "Sarah",
-    "email": "sarah@example.com"
+    "email": "sarah@yahoo.com"
   },
   {
     "name": "Jordan",
-    "email": "jordan@example.com"
+    "email": "jordan@icloud.com"
   },
   {
     "name": "Jordan",
-    "email": "jordan@example.com"
+    "email": "jordan@gmail.com"
+  },
+  {
+    "name": "Talel",
+    "email": "mathewstalel@outlook.com"
   }
 ]
