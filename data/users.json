@@ -18,5 +18,9 @@
   {
     "name": "Talel",
     "email": "mathewstalel@outlook.com"
+  },
+  {
+    "name": "TestUser",
+    "email": "test@example.com"
   }
 ]

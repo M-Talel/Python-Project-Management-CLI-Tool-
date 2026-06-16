@@ -1,3 +1,6 @@
-- [x] Update README.md to document the actual interactive menu (choices 1-8) instead of subcommand-style usage.
-- [x] Ensure examples in README match the prompts in main.py (user/project/task inputs + valid statuses).
-- [x] Keep installation/project structure sections consistent with the repo layout.
+- [x] Inspect validation.py and where its functions are imported/used.
+- [x] Propose and approve a rename mapping for validation functions.
+- [x] Update utils/validation.py with new function names.
+- [x] Update imports/usages in main.py.
+- [x] Add backwards-compatible aliases in utils/validation.py (old names -> new names).
+- [x] Run the project (or a quick syntax check) to ensure everything still works.
