@@ -1,6 +1,10 @@
-- [x] Inspect validation.py and where its functions are imported/used.
-- [x] Propose and approve a rename mapping for validation functions.
-- [x] Update utils/validation.py with new function names.
-- [x] Update imports/usages in main.py.
-- [x] Add backwards-compatible aliases in utils/validation.py (old names -> new names).
-- [x] Run the project (or a quick syntax check) to ensure everything still works.
+# TODO - Rubric upgrade (aim 85-90)
+
+- [x] Refactor CLI to argparse with subcommands (keep interactive menu optional)
+
+- [ ] Harden persistence in utils/storage.py (try/except, safe load/save)
+- [ ] Improve OOP: introduce BaseModel/BaseEntity and use inheritance in User/Project/Task
+- [ ] Add pytest test suite under tests/ for validation, storage, and some CLI handlers
+- [ ] Add external dependency + dependency manifest (requirements.txt/pyproject.toml) and use it in code
+- [ ] Update README with new CLI usage + dependency install
+- [ ] Run mypy/formatting (optional) and run python -m pytest
