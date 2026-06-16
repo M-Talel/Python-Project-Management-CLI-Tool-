@@ -1,0 +1,3 @@
+- [x] Update README.md to document the actual interactive menu (choices 1-8) instead of subcommand-style usage.
+- [x] Ensure examples in README match the prompts in main.py (user/project/task inputs + valid statuses).
+- [x] Keep installation/project structure sections consistent with the repo layout.

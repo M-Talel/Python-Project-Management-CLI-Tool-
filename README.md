@@ -6,7 +6,9 @@ A simple command-line tool to manage users, projects, and tasks with persistent 
 
 ## Installation
 
-No external dependencies required. Just run:
+No external (pip) dependencies are required.
+
+Run the app from the project directory:
 
 ```bash
 python3 main.py
@@ -14,38 +16,42 @@ python3 main.py
 
 ## Usage
 
-### User Management
+This project runs as an **interactive command-line menu** (it does not use subcommands/arguments).
+
+Start the app:
 
 ```bash
-# Add a new user
-python main.py add-user Alice alice@example.com
-
-# List all users
-python main.py list-users
+python3 main.py
 ```
 
-### Project Management
+You will see a menu with options **1–8**:
 
-```bash
-# Add a project for a user
-python main.py add-project Alice "Website Redesign" "Redesign company website" 2026-12-31
+1. Add a new user
+2. List all users
+3. Add a project
+4. List projects for a user
+5. Add a task
+6. List tasks for a project
+7. Mark task as completed
+8. Exit
 
-# List projects for a user
-python main.py list-projects Alice
-```
+### What to enter (key prompts)
 
-### Task Management
+- **Add a project** asks for:
+  - `Enter user name`
+  - `Enter project title`
+  - `Enter project description`
+  - `Enter due date (YYYY-MM-DD)`
 
-```bash
-# Add a task to a project
-python main.py add-task "Website Redesign" "Design mockups" pending Alice
+- **Add a task** asks for:
+  - `Enter project name`
+  - `Enter task title`
+  - `Enter task status` (options shown in the app): `pending`, `in_progress`, `completed`
+  - `Enter assigned user`
 
-# List tasks for a project
-python main.py list-tasks "Website Redesign"
-
-# Mark a task as completed
-python main.py complete-task "Website Redesign" "Design mockups"
-```
+- **Mark a task as completed** asks for:
+  - `Enter project name`
+  - `Enter task title`
 
 ## Features
 

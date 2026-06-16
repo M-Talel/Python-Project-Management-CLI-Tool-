@@ -38,7 +38,7 @@ def add_user():
 
 
 def list_users():
-    """List all users"""
+    #List the users in the system
     users = storage.get_all_users()
     if not users:
         print("\nNo users found")
@@ -50,7 +50,7 @@ def list_users():
 
 
 def add_project():
-    """Add a new project"""
+    #Adds a new project
     user = input("Enter user name: ").strip()
     title = input("Enter project title: ").strip()
     description = input("Enter project description: ").strip()
@@ -65,7 +65,7 @@ def add_project():
 
 
 def list_projects():
-    """List projects for a user"""
+    #List projects for a user
     user = input("Enter user name: ").strip()
     projects = storage.get_projects(user)
     
@@ -81,7 +81,7 @@ def list_projects():
 
 
 def add_task():
-    """Add a task to a project"""
+    #Add a task to a project
     project = input("Enter project name: ").strip()
     title = input("Enter task title: ").strip()
     print("Task status options: pending, in_progress, completed")
@@ -97,7 +97,7 @@ def add_task():
 
 
 def list_tasks():
-    """List tasks for a project"""
+    #List tasks for a project
     project = input("Enter project name: ").strip()
     tasks = storage.get_tasks(project)
     
@@ -113,7 +113,7 @@ def list_tasks():
 
 
 def complete_task():
-    """Mark a task as completed"""
+    #Mark a task as completed
     project = input("Enter project name: ").strip()
     task_title = input("Enter task title: ").strip()
     
@@ -125,7 +125,7 @@ def complete_task():
 
 
 def main():
-    """Main loop for the interactive menu"""
+    #Main loop for the interactive menu
     while True:
         display_menu()
         choice = input("Enter your choice (1-8): ").strip()
